@@ -12,7 +12,7 @@ app.use(express.json());
 
 // API Routes
 const portfolioRouter = require('./routes/portfolio');
-app.use('/api/portfolio', portfolioRouter);
+app.use('/api', portfolioRouter);
 
 app.get('/', (req, res) => {
   res.send('Innovatech Web Works API is running...');

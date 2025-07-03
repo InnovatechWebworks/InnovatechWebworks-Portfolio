@@ -2,7 +2,7 @@ const router = require('express').Router();
 const PortfolioItem = require('../models/PortfolioItem');
 
 // GET all portfolio items
-router.get('/', async (req, res) => {
+router.get('/portfolio', async (req, res) => {
   try {
     const items = await PortfolioItem.find();
     res.json(items);
