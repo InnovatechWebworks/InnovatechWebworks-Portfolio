@@ -12,6 +12,8 @@ const GetStartedPage = () => {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -19,6 +21,7 @@ const GetStartedPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     emailjs.send(
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -26,12 +29,15 @@ const GetStartedPage = () => {
       formData,
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     ).then((result) => {
-        alert('Your quote request has been sent successfully!');
+        alert('✅ Your quote request has been sent successfully!');
         setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+        setIsSubmitting(false);
     }, (error) => {
-        alert('An error occurred, please try again.');
+        alert('❌ An error occurred, please try again.');
+        setIsSubmitting(false);
     });
   };
+
   return (
     <div className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
       <Container>
@@ -50,13 +56,27 @@ const GetStartedPage = () => {
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="formGridName">
                         <Form.Label>Your Name</Form.Label>
-                        <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" />
+                        <Form.Control
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Enter your name"
+                          required
+                        />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" />
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="Enter your email"
+                          required
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
@@ -65,37 +85,60 @@ const GetStartedPage = () => {
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="formGridPhone">
                         <Form.Label>Phone Number</Form.Label>
-                        <Form.Control type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter your phone number" />
+                        <Form.Control
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="Enter your phone number"
+                          required
+                        />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="formGridCompany">
                         <Form.Label>Company</Form.Label>
-                        <Form.Control type="text" name="company" value={formData.company} onChange={handleChange} placeholder="Your company name" />
+                        <Form.Control
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          placeholder="Your company name"
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
 
                   <Form.Group className="mb-4" controlId="formGridMessage">
                     <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" name="message" value={formData.message} onChange={handleChange} rows={5} placeholder="Tell us about your project" />
+                    <Form.Control
+                      as="textarea"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={5}
+                      placeholder="Tell us about your project"
+                      required
+                    />
                   </Form.Group>
 
                   <div className="text-center">
-                    <Button variant="primary" type="submit">
-                      Submit Request
+                    <Button variant="primary" type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? 'Submitting...' : 'Submit Request'}
                     </Button>
                   </div>
                 </Form>
+
                 <hr className="my-5" />
+
                 <div className="text-center">
                   <h4 className="fw-bold">Our Contact Info</h4>
                   <p className="text-muted">
-                    123 Innovation Drive, Tech City, CA 91234
+                    Kolkata, India, 700156
                     <br />
-                    (555) 123-4567
+                    +91 91239 41790
                     <br />
-                    info@innovatech.com
+                    innovatechwebworks@gmail.com
                   </p>
                 </div>
               </Col>

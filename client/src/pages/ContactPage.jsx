@@ -12,6 +12,8 @@ const ContactPage = () => {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -19,6 +21,7 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     emailjs.send(
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -26,12 +29,15 @@ const ContactPage = () => {
       formData,
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     ).then((result) => {
-        alert('Message sent successfully!');
+        alert('✅ Message sent successfully!');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsSubmitting(false);
     }, (error) => {
-        alert('An error occurred, please try again.');
+        alert('❌ An error occurred. Please try again.');
+        setIsSubmitting(false);
     });
   };
+
   return (
     <Container className="py-5">
       <Fade triggerOnce>
@@ -39,7 +45,7 @@ const ContactPage = () => {
           <h2 className="text-primary text-uppercase fw-bold">Contact Us</h2>
           <h3 className="display-6 fw-bold">Get in Touch</h3>
           <p className="lead text-muted">
-            We'd love to hear from you. Please fill out the form below or reach out to us directly.
+            We'd love to hear from you. Fill out the form below or reach us directly through our contact info.
           </p>
         </div>
       </Fade>
@@ -49,44 +55,76 @@ const ContactPage = () => {
           <Fade triggerOnce direction="left">
             <h4>Send Us a Message</h4>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formGroupName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" required />
+              <Form.Group className="mb-3" controlId="formName">
+                <Form.Label>Your Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                  required
+                />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formGroupEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required />
+
+              <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  required
+                />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formGroupSubject">
+
+              <Form.Group className="mb-3" controlId="formSubject">
                 <Form.Label>Subject</Form.Label>
-                <Form.Control type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject" />
+                <Form.Control
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Subject (optional)"
+                />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formGroupMessage">
+
+              <Form.Group className="mb-3" controlId="formMessage">
                 <Form.Label>Message</Form.Label>
-                <Form.Control as="textarea" name="message" value={formData.message} onChange={handleChange} rows={4} placeholder="Your message" required />
+                <Form.Control
+                  as="textarea"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  placeholder="Write your message"
+                  required
+                />
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Send Message
+
+              <Button variant="primary" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </Form>
           </Fade>
         </Col>
+
         <Col md={6}>
           <Fade triggerOnce direction="right">
             <h4>Contact Information</h4>
             <p className="text-muted d-flex align-items-center">
               <FaMapMarkerAlt className="me-3 text-primary" size={20} />
-              123 Innovatech Way, Silicon Valley, CA 94025
+              Kolkata, India, 700156
             </p>
             <p className="text-muted d-flex align-items-center">
               <FaPhone className="me-3 text-primary" size={20} />
-              (123) 456-7890
+              +91 91239 41790
             </p>
             <p className="text-muted d-flex align-items-center">
               <FaEnvelope className="me-3 text-primary" size={20} />
-              contact@innovatech.com
+              innovatechwebworks@gmail.com
             </p>
-
           </Fade>
         </Col>
       </Row>
@@ -95,4 +133,3 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-

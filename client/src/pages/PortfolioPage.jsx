@@ -16,16 +16,14 @@ const PortfolioPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get('/api/portfolio');
+        const res = await axios.get('/api/portfolio'); // Must return imageUrl like: "/portfolio-images/project1.jpg"
         if (Array.isArray(res.data)) {
           setItems(res.data);
           setFilteredItems(res.data);
           const uniqueCategories = ['All', ...new Set(res.data.map(item => item.category))];
           setCategories(uniqueCategories);
         } else {
-          setError('Received invalid data from server.');
-          setItems([]);
-          setFilteredItems([]);
+          throw new Error('Invalid data format received.');
         }
       } catch (err) {
         console.error('Error fetching portfolio items:', err);
@@ -71,7 +69,7 @@ const PortfolioPage = () => {
                 key={category}
                 variant={activeFilter === category ? 'primary' : 'outline-primary'}
                 onClick={() => handleFilter(category)}
-                className="rounded-pill px-4"
+                className="rounded-pill px-4 text-capitalize"
               >
                 {category}
               </Button>
@@ -81,14 +79,26 @@ const PortfolioPage = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {filteredItems.length > 0 ? (
               filteredItems.map((item, index) => (
-                <Col key={item._id}>
+                <Col key={item._id || index}>
                   <Fade triggerOnce delay={index * 100}>
-                    <Card className="h-100 shadow-sm border-0 portfolio-card">
-                      <Card.Img variant="top" src={item.imageUrl} />
-                      <Card.Body className="p-4">
+                    <Card className="h-100 shadow-sm border-0">
+                      <Card.Img
+                        variant="top"
+                        src={item.imageUrl} // Should be like: "/portfolio-images/project1.jpg"
+                        alt={item.title}
+                        style={{ objectFit: 'cover', height: '200px' }}
+                      />
+                      <Card.Body className="p-4 d-flex flex-column">
                         <Card.Title as="h4" className="fw-bold mb-3">{item.title}</Card.Title>
-                        <Card.Text className="text-muted">{item.description}</Card.Text>
-                        <Button variant="primary" href={item.projectUrl} target="_blank">View Project</Button>
+                        <Card.Text className="text-muted flex-grow-1">{item.description}</Card.Text>
+                        <Button
+                          variant="primary"
+                          href={item.projectUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Project
+                        </Button>
                       </Card.Body>
                     </Card>
                   </Fade>
@@ -107,4 +117,3 @@ const PortfolioPage = () => {
 };
 
 export default PortfolioPage;
-

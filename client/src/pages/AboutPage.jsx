@@ -8,30 +8,30 @@ const teamMembers = [
   {
     name: 'Ritak Bag',
     role: 'Product Manager',
-    imageUrl: 'https://placehold.co/150',
-    githubUrl: '#',
-    linkedinUrl: '#',
+    imageUrl: '/1751106316855.jpg',
+    githubUrl: 'https://github.com/ritakB0',
+    linkedinUrl: 'https://www.linkedin.com/in/ritak-bag-/',
   },
   {
     name: 'Raman Patra',
     role: 'Lead Developer',
-    imageUrl: 'https://placehold.co/150',
-    githubUrl: '#',
-    linkedinUrl: '#',
+    imageUrl: '/1751478067476.jpg',
+    githubUrl: 'https://github.com/RAMANP-007',
+    linkedinUrl: 'https://www.linkedin.com/in/raman-patra-/',
   },
   {
-    name: 'Hrittik Mondal',
+    name: 'Hritik Mondal',
     role: 'DevOps Engineer & Marketing Lead',
-    imageUrl: 'https://placehold.co/150',
-    githubUrl: '#',
-    linkedinUrl: '#',
+    imageUrl: '/IMG_E1755.JPG',
+    githubUrl: 'https://github.com/hritikmondal2003',
+    linkedinUrl: 'https://www.linkedin.com/in/hritikmondal/',
   },
   {
-    name: 'Manoj Mondal',
+    name: 'Manoj Mandal',
     role: 'Cyber Security Expert',
-    imageUrl: 'https://placehold.co/150',
-    githubUrl: '#',
-    linkedinUrl: '#',
+    imageUrl: '/1748955254670.jpg',
+    githubUrl: 'https://github.com/ManojMandal01',
+    linkedinUrl: 'https://www.linkedin.com/in/manoj-mandal-/',
   },
 ];
 
@@ -79,7 +79,12 @@ const AboutPage = () => {
           <Col md={6} lg={3} key={index} className="mb-4">
             <Fade triggerOnce delay={index * 100}>
               <Card className="h-100 text-center shadow-sm border-0">
-                <Card.Img variant="top" src={member.imageUrl} className="p-4" style={{ borderRadius: '50%' }} />
+                <Card.Img
+                  variant="top"
+                  src={member.imageUrl}
+                  className="p-4"
+                  style={{ borderRadius: '50%', objectFit: 'cover', height: 200 }}
+                />
                 <Card.Body className="d-flex flex-column">
                   <Card.Title as="h5" className="fw-bold">{member.name}</Card.Title>
                   <Card.Text className="text-muted">{member.role}</Card.Text>
@@ -98,4 +103,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
