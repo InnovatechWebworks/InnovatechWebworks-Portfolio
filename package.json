@@ -1,0 +1,14 @@
+{
+  "name": "innovetech-webworks-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=client",
+    "build": "npm run build --workspace=client && npm run build --workspace=backend",
+    "start": "npm run start --workspace=backend"
+  }
+}

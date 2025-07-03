@@ -18,29 +18,19 @@ app.get('/', (req, res) => {
   res.send('Innovatech Web Works API is running...');
 });
 
-const startServer = async () => {
-  const uri = process.env.MONGO_URI;
-  if (!uri) {
-    console.error('🔴 MONGO_URI is not defined in .env file. Please check your configuration.');
-    process.exit(1);
-  }
-
-  console.log('🟡 Attempting to connect to MongoDB...');
-  console.log(`   - URI Host: ${uri.split('@')[1]?.split('/')[0] || 'Not found'}`); // Log host without credentials
-
-  try {
-    await mongoose.connect(uri);
-    console.log('✅ MongoDB database connection established successfully');
-    app.listen(port, () => {
-      console.log(`🚀 Server is running on port: ${port}`);
+// Connect to MongoDB
+const uri = process.env.MONGO_URI;
+if (!uri) {
+  console.error('🔴 MONGO_URI is not defined in .env file. Please check your configuration.');
+} else {
+    mongoose.connect(uri).then(() => {
+        console.log('✅ MongoDB database connection established successfully');
+    }).catch(error => {
+        console.error('🔴🔴🔴 Database connection failed! 🔴🔴🔴');
+        console.error('   - Error Message:', error.message);
     });
-  } catch (error) {
-    console.error('🔴🔴🔴 Database connection failed! 🔴🔴🔴');
-    console.error('   - Error Message:', error.message);
-    console.error('   - Please ensure your MONGO_URI is correct in the .env file and that your IP address is whitelisted in MongoDB Atlas.');
-    process.exit(1);
-  }
-};
+}
 
-startServer();
+// Export the app for Vercel
+module.exports = app;
 
