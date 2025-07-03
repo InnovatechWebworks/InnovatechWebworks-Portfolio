@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstrap';
-import axios from 'axios';
+import api from '../api';
 import { Fade } from 'react-awesome-reveal';
 
 const PortfolioPage = () => {
@@ -16,7 +16,7 @@ const PortfolioPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get('/api/portfolio'); // Must return imageUrl like: "/portfolio-images/project1.jpg"
+                const res = await api.get('/api/portfolio'); // Must return imageUrl like: "/portfolio-images/project1.jpg"
         if (Array.isArray(res.data)) {
           setItems(res.data);
           setFilteredItems(res.data);
