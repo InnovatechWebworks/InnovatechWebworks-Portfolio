@@ -16,7 +16,7 @@ const PortfolioPage = () => {
       setLoading(true);
       setError(null);
       try {
-                const res = await api.get('/api/portfolio'); // Must return imageUrl like: "/portfolio-images/project1.jpg"
+        const res = await api.get('/api/portfolio');
         if (Array.isArray(res.data)) {
           setItems(res.data);
           setFilteredItems(res.data);
@@ -84,7 +84,7 @@ const PortfolioPage = () => {
                     <Card className="h-100 shadow-sm border-0">
                       <Card.Img
                         variant="top"
-                        src={item.imageUrl} // Should be like: "/portfolio-images/project1.jpg"
+                        src={item.imageUrl}
                         alt={item.title}
                         style={{ objectFit: 'cover', height: '200px' }}
                       />
@@ -105,8 +105,13 @@ const PortfolioPage = () => {
                 </Col>
               ))
             ) : (
-              <Col className="text-center w-100">
-                <p className="text-muted">No portfolio items found. Add some in the admin dashboard!</p>
+              <Col xs={12}>
+                <div className="text-center p-5">
+                  <h4 className="text-muted">No Projects Found</h4>
+                  <p className="text-muted">
+                    There are no projects matching the current filter, or no projects have been added yet.
+                  </p>
+                </div>
               </Col>
             )}
           </Row>
