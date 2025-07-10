@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const PortfolioItem = require('../models/PortfolioItem');
 
+
 // GET all portfolio items
 router.get('/', async (req, res) => {
   try {
@@ -13,13 +14,26 @@ router.get('/', async (req, res) => {
 
 // POST a new portfolio item
 router.post('/add', async (req, res) => {
-  const { title, description, imageUrl, projectUrl, category } = req.body;
-  const newItem = new PortfolioItem({ title, description, imageUrl, projectUrl, category });
-
   try {
+    const { title, description, projectUrl, category, imageUrl } = req.body;
+
+    // Basic validation
+    if (!title || !description || !projectUrl || !category || !imageUrl) {
+      return res.status(400).json({ message: 'All fields, including imageUrl, are required.' });
+    }
+
+    const newItem = new PortfolioItem({
+      title,
+      description,
+      imageUrl,
+      projectUrl,
+      category,
+    });
+
     const savedItem = await newItem.save();
     res.status(201).json(savedItem);
   } catch (err) {
+    console.error('Error adding portfolio item:', err);
     res.status(400).json({ message: 'Error adding portfolio item', error: err.message });
   }
 });
