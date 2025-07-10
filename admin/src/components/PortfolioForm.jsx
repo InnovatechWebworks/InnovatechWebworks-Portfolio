@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api'; // Use the configured axios instance
 import { uploadToCloudinary } from '../utils/cloudinaryUpload';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Spinner } from 'react-bootstrap'; // Import Spinner
 import './PortfolioForm.css';
 
 const PortfolioForm = () => {
@@ -12,7 +12,8 @@ const PortfolioForm = () => {
     category: 'Web Development', // Default category
   });
   const [image, setImage] = useState(null);
-  const [status, setStatus] = useState({ submitted: false, message: '', error: false });
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ show: false, message: '', variant: 'success' });
 
   const categories = [
     'Web Development',
@@ -31,40 +32,37 @@ const PortfolioForm = () => {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
-      setStatus({ submitted: true, message: 'Error: Please select an image.', error: true });
+      setAlert({ show: true, message: 'Please select an image to upload.', variant: 'danger' });
       return;
     }
 
+    setLoading(true);
+    setAlert({ show: false, message: '', variant: 'success' });
+
     try {
-      // 1. Upload image to Cloudinary from the frontend
-      setStatus({ submitted: false, message: 'Uploading image...', error: false });
+      // 1. Upload image to Cloudinary
       const imageUrl = await uploadToCloudinary(image);
-      setStatus({ submitted: false, message: 'Image uploaded! Saving data...', error: false });
 
-      // 2. Send the image URL and other form data to the backend
-      const portfolioData = {
-        ...formData,
-        imageUrl: imageUrl, // Add the Cloudinary URL to the data
-      };
+      // 2. Send the complete portfolio data to the backend
+      const portfolioData = { ...formData, imageUrl };
+      await api.post('/portfolio/add', portfolioData);
 
-      await axios.post('http://localhost:5000/api/portfolio/add', portfolioData);
-
-      // 3. Handle success
-      setStatus({ submitted: true, message: 'Success!', error: false });
+      // 3. Handle success: show message and reset form
+      setAlert({ show: true, message: 'Portfolio item added successfully!', variant: 'success' });
       setFormData({ title: '', description: '', projectUrl: '', category: 'Web Development' });
       setImage(null);
-      document.getElementById('formImage').value = null;
-
-      setTimeout(() => {
-        window.location.href = 'https://innovatech-webworks-portfolio-clien-gamma.vercel.app/portfolio';
-      }, 2000);
+      e.target.reset(); // Reset the form fields
 
     } catch (error) {
-      const errorMessage = error.response?.data?.error || error.response?.data?.message || error.message || error.toString();
-      setStatus({ submitted: true, message: `Error: ${errorMessage}`, error: true });
+      const errorMessage = error.response?.data?.message || error.message || 'An error occurred while adding the item.';
+      setAlert({ show: true, message: errorMessage, variant: 'danger' });
+    } finally {
+      setLoading(false);
+      // Hide alert after 5 seconds
+      setTimeout(() => setAlert({ show: false, message: '', variant: 'success' }), 5000);
     }
   };
 
@@ -72,14 +70,15 @@ const PortfolioForm = () => {
     <div className="portfolio-form-container">
       <h2>Add New Portfolio Item</h2>
 
-      {status.submitted && (
-        <div className={`success-animation ${status.error ? 'error' : ''}`}>
-          <div className="success-message">
-            <Alert variant={status.error ? 'danger' : 'success'}>
-              {status.message}
-            </Alert>
-          </div>
-        </div>
+      {alert.show && (
+        <Alert 
+          variant={alert.variant} 
+          onClose={() => setAlert({ ...alert, show: false })} 
+          dismissible
+          className="fade"
+        >
+          {alert.message}
+        </Alert>
       )}
 
       <Form onSubmit={handleSubmit}>
@@ -112,8 +111,21 @@ const PortfolioForm = () => {
           </Form.Select>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Add Item
+        <Button variant="primary" type="submit" disabled={loading} className="w-100">
+          {loading ? (
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              <span className="ms-2">Adding Item...</span>
+            </>
+          ) : (
+            'Add Item'
+          )}
         </Button>
       </Form>
     </div>
