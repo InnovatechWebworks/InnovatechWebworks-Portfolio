@@ -5,7 +5,7 @@ import { Fade } from 'react-awesome-reveal';
 const staticProjects = [
   {
     _id: '1',
-    title: "weather-app",
+    title: "Weather App",
     description: "A basic weather app",
     category: "JavaScript",
     projectUrl: "https://github.com/RAMANP-007/weather-app",
@@ -14,16 +14,16 @@ const staticProjects = [
   },
   {
     _id: '2',
-    title: "shopmenia",
+    title: "Shopmenia",
     description: "A full stack e-commerce website with admin panel",
     category: "JavaScript",
     projectUrl: "https://github.com/RAMANP-007/shopmenia",
-    liveUrl: "",
+    liveUrl: "https://shopmenia.vercel.app/",
     imageUrl: "",
   },
   {
     _id: '3',
-    title: "eve-cafe",
+    title: "Eve Cafe",
     description: "A basic website for a cafe with email messaging feature",
     category: "JavaScript",
     projectUrl: "https://github.com/RAMANP-007/eve-cafe",
@@ -32,8 +32,8 @@ const staticProjects = [
   },
   {
     _id: '4',
-    title: "bhagwat_geeta_verse_explainer",
-    description: "A Bhagwat Geeta verse explainer using Bhagwat Geeta API",
+    title: "Bhagwat Geeta Verse Explainer",
+    description: "An explainer app using Bhagwat Geeta API",
     category: "JavaScript",
     projectUrl: "https://github.com/RAMANP-007/bhagwat_geeta_verse_explainer",
     liveUrl: "",
@@ -41,8 +41,8 @@ const staticProjects = [
   },
   {
     _id: '5',
-    title: "event-sheduler",
-    description: "A smart event scheduler that integrates with weather and helps you to schedule your plans",
+    title: "Event Scheduler",
+    description: "A smart event scheduler that integrates with weather APIs",
     category: "JavaScript",
     projectUrl: "https://github.com/RAMANP-007/event-sheduler",
     liveUrl: "",
@@ -50,8 +50,8 @@ const staticProjects = [
   },
   {
     _id: '6',
-    title: "Final_Work",
-    description: "An organized DevOps-based academic portfolio submission",
+    title: "Final Work",
+    description: "DevOps-based academic portfolio submission",
     category: "Frontend",
     projectUrl: "https://github.com/hritikmondal2003/Final_Work",
     liveUrl: "https://my-project-roan-six-45.vercel.app/",
@@ -60,7 +60,7 @@ const staticProjects = [
   {
     _id: '7',
     title: "Temperature Converter",
-    description: "A simple temperature converter using HTML, CSS and JS",
+    description: "A basic converter using HTML, CSS and JS",
     category: "Frontend",
     projectUrl: "https://github.com/hritikmondal2003/OIBSIP-TEMPERATURE-CONVERTER",
     liveUrl: "",
@@ -77,8 +77,8 @@ const staticProjects = [
   },
   {
     _id: '9',
-    title: "InnovatechWebworks Portfolio",
-    description: "Official portfolio site of Innovatech WebWorks",
+    title: "Innovatech Webworks Portfolio",
+    description: "Official portfolio of Innovatech WebWorks",
     category: "Full Stack",
     projectUrl: "https://github.com/InnovatechWebworks/InnovatechWebworks-Portfolio",
     liveUrl: "https://innovatech-webworks-portfolio-clien-gamma.vercel.app/",
@@ -114,17 +114,13 @@ const PortfolioPage = () => {
       <div className="text-center mb-5">
         <h2 className="text-primary text-uppercase fw-bold">Our Portfolio</h2>
         <h3 className="display-6 fw-bold">Explore Our Recent Work</h3>
-        <p className="lead text-muted">
-          Here are some of the projects we're proud to have worked on.
-        </p>
+        <p className="lead text-muted">Here are some of the projects we're proud to have worked on.</p>
         <p className="small text-muted">
-          <strong>Credits:</strong> Most projects were developed by <a href="https://github.com/RAMANP-007" target="_blank" rel="noopener noreferrer">Raman Patra</a>, our Lead Developer. <br />
-          Product oversight by <a href="https://www.linkedin.com/in/ritak-bag-/" target="_blank" rel="noopener noreferrer">Ritak Bag</a>, Product Manager. <br />
-          DevOps, CI/CD, and outreach led by <a href="https://www.linkedin.com/in/hritikmondal/" target="_blank" rel="noopener noreferrer">Hritik Mondal</a>, DevOps Engineer & Marketing Lead.
+          <strong>Credits:</strong> Developed by <a href="https://github.com/RAMANP-007" target="_blank" rel="noopener noreferrer">Raman Patra</a>, Product by <a href="https://www.linkedin.com/in/ritak-bag-/" target="_blank" rel="noopener noreferrer">Ritak Bag</a>, DevOps by <a href="https://www.linkedin.com/in/hritikmondal/" target="_blank" rel="noopener noreferrer">Hritik Mondal</a>.
         </p>
       </div>
 
-      <div className="d-flex justify-content-center flex-wrap gap-3 mb-5">
+      <div className="d-flex justify-content-center flex-wrap gap-3 mb-4">
         {categories.map(category => (
           <Button
             key={category}
@@ -145,18 +141,19 @@ const PortfolioPage = () => {
                 <Card className="h-100 shadow-sm border-0">
                   <Card.Img
                     variant="top"
-                    src={item.imageUrl || `https://source.unsplash.com/400x200/?technology,code,computer&sig=${index}`}
-                    alt={item.title}
+                    src={item.imageUrl || `https://source.unsplash.com/400x200/?project,code,web&sig=${index}`}
+                    alt={`Project preview of ${item.title}`}
+                    loading="lazy"
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = `https://source.unsplash.com/400x200/?technology,web,code&sig=${index + 100}`;
+                      e.target.src = `https://source.unsplash.com/400x200/?technology,software&sig=${index + 20}`;
                     }}
                     style={{ objectFit: 'cover', height: '200px' }}
                   />
                   <Card.Body className="p-4 d-flex flex-column">
-                    <Card.Title as="h4" className="fw-bold mb-3">{item.title}</Card.Title>
+                    <Card.Title className="fw-bold mb-2">{item.title}</Card.Title>
                     <Card.Text className="text-muted flex-grow-1">{item.description}</Card.Text>
-                    <div className="d-grid gap-2 mt-auto">
+                    <div className="d-grid gap-2 mt-3">
                       <Button
                         variant="primary"
                         href={item.projectUrl}
@@ -185,9 +182,7 @@ const PortfolioPage = () => {
           <Col xs={12}>
             <div className="text-center p-5">
               <h4 className="text-muted">No Projects Found</h4>
-              <p className="text-muted">
-                There are no projects matching the current filter.
-              </p>
+              <p className="text-muted">Try selecting a different category.</p>
             </div>
           </Col>
         )}
