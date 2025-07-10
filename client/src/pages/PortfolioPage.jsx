@@ -9,7 +9,7 @@ const staticProjects = [
     description: "A basic weather app",
     category: "JavaScript",
     projectUrl: "https://github.com/InnovatechWebworks/weather-app",
-    imageUrl: "https://via.placeholder.com/400x300.png?text=Weather+App",
+    imageUrl: "/images/weather-app.png",
   },
   {
     _id: '2',
@@ -17,7 +17,7 @@ const staticProjects = [
     description: "A full stack e-commerce website with admin panel",
     category: "JavaScript",
     projectUrl: "https://github.com/InnovatechWebworks/shopmenia",
-    imageUrl: "https://via.placeholder.com/400x300.png?text=Shopmenia",
+    imageUrl: "/images/shopmenia.png",
   },
   {
     _id: '3',
@@ -25,7 +25,7 @@ const staticProjects = [
     description: "A full stack pizza delivery application",
     category: "JavaScript",
     projectUrl: "https://github.com/InnovatechWebworks/pizza-delivery-app",
-    imageUrl: "https://via.placeholder.com/400x300.png?text=Pizza+App",
+    imageUrl: "/images/pizza-delivery-app.png",
   },
   {
     _id: '4',
@@ -33,7 +33,7 @@ const staticProjects = [
     description: "A Bhagwat Geeta verse explainer using Bhagwat Geeta API",
     category: "JavaScript",
     projectUrl: "https://github.com/InnovatechWebworks/bhagwat_geeta_verse_explainer",
-    imageUrl: "https://via.placeholder.com/400x300.png?text=Geeta+Explainer",
+    imageUrl: "/images/bhagwat_geeta_verse_explainer.png",
   },
   {
     _id: '5',
@@ -41,7 +41,7 @@ const staticProjects = [
     description: "A smart event scheduler that integrates with weather and helps you to schedule your plans",
     category: "JavaScript",
     projectUrl: "https://github.com/InnovatechWebworks/event-sheduler",
-    imageUrl: "https://via.placeholder.com/400x300.png?text=Event+Scheduler",
+    imageUrl: "/images/event-sheduler.png",
   },
   {
     _id: '6',
@@ -49,7 +49,7 @@ const staticProjects = [
     description: "A basic website for a cafe with email messaging feature",
     category: "JavaScript",
     projectUrl: "https://github.com/InnovatechWebworks/eve-cafe",
-    imageUrl: "https://via.placeholder.com/400x300.png?text=Eve+Cafe",
+    imageUrl: "/images/eve-cafe.png",
   }
 ];
 
