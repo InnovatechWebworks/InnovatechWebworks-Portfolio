@@ -6,23 +6,38 @@ const PortfolioList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [alert, setAlert] = useState({ show: false, message: '', variant: 'success' });
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        setLoading(true);
-        const res = await api.get('/portfolio');
-        setItems(res.data);
-      } catch (err) {
-        setError('Failed to fetch portfolio items.');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchItems();
   }, []);
+
+  const fetchItems = async () => {
+    try {
+      setLoading(true);
+      const res = await api.get('/portfolio');
+      setItems(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      setError('Failed to fetch portfolio items.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete this item permanently?')) {
+      try {
+        await api.delete(`/portfolio/${id}`);
+        setItems(items.filter(item => item._id !== id)); // Update UI immediately
+        setAlert({ show: true, message: 'Item deleted successfully!', variant: 'success' });
+      } catch (err) {
+        const errorMessage = err.response?.data?.message || 'Failed to delete item.';
+        setAlert({ show: true, message: errorMessage, variant: 'danger' });
+      }
+      setTimeout(() => setAlert({ show: false, message: '', variant: 'success' }), 5000);
+    }
+  };
 
   if (loading) {
     return (
@@ -37,9 +52,23 @@ const PortfolioList = () => {
     return <Alert variant="danger">{error}</Alert>;
   }
 
+  const renderAlert = () => (
+    alert.show && (
+      <Alert 
+        variant={alert.variant} 
+        onClose={() => setAlert({ ...alert, show: false })} 
+        dismissible
+        className="mt-3"
+      >
+        {alert.message}
+      </Alert>
+    )
+  );
+
   return (
     <div className="portfolio-list-container mt-5">
       <h3>Existing Portfolio Items</h3>
+      {renderAlert()}
       {items.length === 0 ? (
         <p>No portfolio items found. Add one using the form above!</p>
       ) : (
@@ -60,7 +89,7 @@ const PortfolioList = () => {
                 <td>{item.category}</td>
                 <td>
                   <Button variant="outline-primary" size="sm" className="me-2">Edit</Button>
-                  <Button variant="outline-danger" size="sm">Delete</Button>
+                  <Button variant="outline-danger" size="sm" onClick={() => handleDelete(item._id)}>Delete</Button>
                 </td>
               </tr>
             ))}
