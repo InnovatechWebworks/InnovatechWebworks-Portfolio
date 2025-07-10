@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
+import { Link } from 'react-router-dom';
 import { Table, Button, Spinner, Alert } from 'react-bootstrap';
 
 const PortfolioList = () => {
@@ -88,7 +89,7 @@ const PortfolioList = () => {
                 <td>{item.title}</td>
                 <td>{item.category}</td>
                 <td>
-                  <Button variant="outline-primary" size="sm" className="me-2">Edit</Button>
+                  <Button as={Link} to={`/edit/${item._id}`} variant="outline-primary" size="sm" className="me-2">Edit</Button>
                   <Button variant="outline-danger" size="sm" onClick={() => handleDelete(item._id)}>Delete</Button>
                 </td>
               </tr>
