@@ -1,16 +1,25 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 // ----------------- MIDDLEWARE -----------------
-app.use(cors({
-  origin: process.env.FRONTEND_URL || '*', // ✅ use specific origin in production
+const allowedOrigins = [
+  'http://localhost:3000', // Your local client
+  'http://localhost:5173', // Your local admin dashboard
+  'http://localhost:5174', // Fallback port for admin dashboard
+  process.env.FRONTEND_URL
+].filter(Boolean); // Removes any falsy values if FRONTEND_URL is not set
+
+const corsOptions = {
+  origin: allowedOrigins,
   credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // ----------------- ROUTES -----------------
