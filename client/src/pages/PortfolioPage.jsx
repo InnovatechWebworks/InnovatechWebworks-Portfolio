@@ -57,21 +57,24 @@ const PortfolioPage = () => {
   const [filteredItems, setFilteredItems] = useState(staticProjects);
   const [categories, setCategories] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    // Extract unique categories from the static data
     const uniqueCategories = ['All', ...new Set(staticProjects.map(item => item.category))];
     setCategories(uniqueCategories);
   }, []);
 
   const handleFilter = (category) => {
     setActiveFilter(category);
+    setShowAll(false); // Reset to show initial view on filter change
     if (category === 'All') {
       setFilteredItems(staticProjects);
     } else {
       setFilteredItems(staticProjects.filter(item => item.category === category));
     }
   };
+
+  const itemsToShow = showAll ? filteredItems : filteredItems.slice(0, 3);
 
   return (
     <Container className="py-5">
@@ -98,8 +101,8 @@ const PortfolioPage = () => {
         </div>
 
         <Row xs={1} md={2} lg={3} className="g-4">
-          {filteredItems.length > 0 ? (
-            filteredItems.map((item, index) => (
+          {itemsToShow.length > 0 ? (
+            itemsToShow.map((item, index) => (
               <Col key={item._id || index}>
                 <Fade triggerOnce delay={index * 100}>
                   <Card className="h-100 shadow-sm border-0">
@@ -136,6 +139,14 @@ const PortfolioPage = () => {
             </Col>
           )}
         </Row>
+
+        {!showAll && filteredItems.length > 3 && (
+          <div className="text-center mt-5">
+            <Button variant="primary" size="lg" onClick={() => setShowAll(true)}>
+              Show All Projects
+            </Button>
+          </div>
+        )}
       </>
     </Container>
   );
