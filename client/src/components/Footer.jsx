@@ -34,7 +34,7 @@ const Footer = () => {
             <h5 className="fw-bold">Follow Us</h5>
             <div className="d-flex justify-content-md-end justify-content-center mt-2">
               <a
-                href="https://facebook.com/innovatechwebworks"
+                href="https://www.facebook.com/profile.php?id=61577719006629"
                 className="text-white me-3"
                 target="_blank"
                 rel="noopener noreferrer"
