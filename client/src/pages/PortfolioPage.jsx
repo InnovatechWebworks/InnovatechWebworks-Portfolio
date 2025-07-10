@@ -8,48 +8,81 @@ const staticProjects = [
     title: "weather-app",
     description: "A basic weather app",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/weather-app",
-    imageUrl: "/images/weather-app.png",
+    projectUrl: "https://github.com/RAMANP-007/weather-app",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     _id: '2',
     title: "shopmenia",
     description: "A full stack e-commerce website with admin panel",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/shopmenia",
-    imageUrl: "/images/shopmenia.png",
+    projectUrl: "https://github.com/RAMANP-007/shopmenia",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     _id: '3',
-    title: "pizza-delivery-app",
-    description: "A full stack pizza delivery application",
+    title: "eve-cafe",
+    description: "A basic website for a cafe with email messaging feature",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/pizza-delivery-app",
-    imageUrl: "/images/pizza-delivery-app.png",
+    projectUrl: "https://github.com/RAMANP-007/eve-cafe",
+    liveUrl: "https://eve-cafe.vercel.app/",
+    imageUrl: "",
   },
   {
     _id: '4',
     title: "bhagwat_geeta_verse_explainer",
     description: "A Bhagwat Geeta verse explainer using Bhagwat Geeta API",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/bhagwat_geeta_verse_explainer",
-    imageUrl: "/images/bhagwat_geeta_verse_explainer.png",
+    projectUrl: "https://github.com/RAMANP-007/bhagwat_geeta_verse_explainer",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     _id: '5',
     title: "event-sheduler",
     description: "A smart event scheduler that integrates with weather and helps you to schedule your plans",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/event-sheduler",
-    imageUrl: "/images/event-sheduler.png",
+    projectUrl: "https://github.com/RAMANP-007/event-sheduler",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     _id: '6',
-    title: "eve-cafe",
-    description: "A basic website for a cafe with email messaging feature",
-    category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/eve-cafe",
-    imageUrl: "/images/eve-cafe.png",
+    title: "Final_Work",
+    description: "An organized DevOps-based academic portfolio submission",
+    category: "Frontend",
+    projectUrl: "https://github.com/hritikmondal2003/Final_Work",
+    liveUrl: "https://my-project-roan-six-45.vercel.app/",
+    imageUrl: "",
+  },
+  {
+    _id: '7',
+    title: "Temperature Converter",
+    description: "A simple temperature converter using HTML, CSS and JS",
+    category: "Frontend",
+    projectUrl: "https://github.com/hritikmondal2003/OIBSIP-TEMPERATURE-CONVERTER",
+    liveUrl: "",
+    imageUrl: "",
+  },
+  {
+    _id: '8',
+    title: "Landing Page",
+    description: "A clean and responsive landing page",
+    category: "Frontend",
+    projectUrl: "https://github.com/hritikmondal2003/OIBSIP-LANDING-Page",
+    liveUrl: "https://oibsip-landing-page-rosy.vercel.app/",
+    imageUrl: "",
+  },
+  {
+    _id: '9',
+    title: "InnovatechWebworks Portfolio",
+    description: "Official portfolio site of Innovatech WebWorks",
+    category: "Full Stack",
+    projectUrl: "https://github.com/InnovatechWebworks/InnovatechWebworks-Portfolio",
+    liveUrl: "https://innovatech-webworks-portfolio-clien-gamma.vercel.app/",
+    imageUrl: "",
   }
 ];
 
@@ -66,7 +99,7 @@ const PortfolioPage = () => {
 
   const handleFilter = (category) => {
     setActiveFilter(category);
-    setShowAll(false); // Reset to show initial view on filter change
+    setShowAll(false);
     if (category === 'All') {
       setFilteredItems(staticProjects);
     } else {
@@ -84,70 +117,89 @@ const PortfolioPage = () => {
         <p className="lead text-muted">
           Here are some of the projects we're proud to have worked on.
         </p>
+        <p className="small text-muted">
+          <strong>Credits:</strong> Most projects were developed by <a href="https://github.com/RAMANP-007" target="_blank" rel="noopener noreferrer">Raman Patra</a>, our Lead Developer. <br />
+          Product oversight by <a href="https://www.linkedin.com/in/ritak-bag-/" target="_blank" rel="noopener noreferrer">Ritak Bag</a>, Product Manager. <br />
+          DevOps, CI/CD, and outreach led by <a href="https://www.linkedin.com/in/hritikmondal/" target="_blank" rel="noopener noreferrer">Hritik Mondal</a>, DevOps Engineer & Marketing Lead.
+        </p>
       </div>
 
-      <>
-        <div className="d-flex justify-content-center flex-wrap gap-3 mb-5">
-          {categories.map(category => (
-            <Button
-              key={category}
-              variant={activeFilter === category ? 'primary' : 'outline-primary'}
-              onClick={() => handleFilter(category)}
-              className="rounded-pill px-4 text-capitalize"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+      <div className="d-flex justify-content-center flex-wrap gap-3 mb-5">
+        {categories.map(category => (
+          <Button
+            key={category}
+            variant={activeFilter === category ? 'primary' : 'outline-primary'}
+            onClick={() => handleFilter(category)}
+            className="rounded-pill px-4 text-capitalize"
+          >
+            {category}
+          </Button>
+        ))}
+      </div>
 
-        <Row xs={1} md={2} lg={3} className="g-4">
-          {itemsToShow.length > 0 ? (
-            itemsToShow.map((item, index) => (
-              <Col key={item._id || index}>
-                <Fade triggerOnce delay={index * 100}>
-                  <Card className="h-100 shadow-sm border-0">
-                    <Card.Img
-                      variant="top"
-                      src={item.imageUrl}
-                      alt={item.title}
-                      style={{ objectFit: 'cover', height: '200px' }}
-                    />
-                    <Card.Body className="p-4 d-flex flex-column">
-                      <Card.Title as="h4" className="fw-bold mb-3">{item.title}</Card.Title>
-                      <Card.Text className="text-muted flex-grow-1">{item.description}</Card.Text>
+      <Row xs={1} md={2} lg={3} className="g-4">
+        {itemsToShow.length > 0 ? (
+          itemsToShow.map((item, index) => (
+            <Col key={item._id || index}>
+              <Fade triggerOnce delay={index * 100}>
+                <Card className="h-100 shadow-sm border-0">
+                  <Card.Img
+                    variant="top"
+                    src={item.imageUrl || `https://source.unsplash.com/400x200/?technology,code,computer&sig=${index}`}
+                    alt={item.title}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `https://source.unsplash.com/400x200/?technology,web,code&sig=${index + 100}`;
+                    }}
+                    style={{ objectFit: 'cover', height: '200px' }}
+                  />
+                  <Card.Body className="p-4 d-flex flex-column">
+                    <Card.Title as="h4" className="fw-bold mb-3">{item.title}</Card.Title>
+                    <Card.Text className="text-muted flex-grow-1">{item.description}</Card.Text>
+                    <div className="d-grid gap-2 mt-auto">
                       <Button
                         variant="primary"
                         href={item.projectUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View Project
+                        View Code
                       </Button>
-                    </Card.Body>
-                  </Card>
-                </Fade>
-              </Col>
-            ))
-          ) : (
-            <Col xs={12}>
-              <div className="text-center p-5">
-                <h4 className="text-muted">No Projects Found</h4>
-                <p className="text-muted">
-                  There are no projects matching the current filter.
-                </p>
-              </div>
+                      {item.liveUrl && (
+                        <Button
+                          variant="outline-secondary"
+                          href={item.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Live Demo
+                        </Button>
+                      )}
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Fade>
             </Col>
-          )}
-        </Row>
-
-        {!showAll && filteredItems.length > 3 && (
-          <div className="text-center mt-5">
-            <Button variant="primary" size="lg" onClick={() => setShowAll(true)}>
-              Show All Projects
-            </Button>
-          </div>
+          ))
+        ) : (
+          <Col xs={12}>
+            <div className="text-center p-5">
+              <h4 className="text-muted">No Projects Found</h4>
+              <p className="text-muted">
+                There are no projects matching the current filter.
+              </p>
+            </div>
+          </Col>
         )}
-      </>
+      </Row>
+
+      {!showAll && filteredItems.length > 3 && (
+        <div className="text-center mt-5">
+          <Button variant="primary" size="lg" onClick={() => setShowAll(true)}>
+            Show All Projects
+          </Button>
+        </div>
+      )}
     </Container>
   );
 };
