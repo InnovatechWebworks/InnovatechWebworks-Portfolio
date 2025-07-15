@@ -6,7 +6,9 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <Services />
+      <main id="main">
+        <Services />
+      </main>
     </>
   );
 };

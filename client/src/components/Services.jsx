@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import './Services.css'; // Import the new stylesheet
 
 const services = [
@@ -30,6 +32,12 @@ const services = [
 ];
 
 const Services = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      once: true,
+    });
+  }, []);
   return (
     <section id="services" className="services">
       <div className="container">
