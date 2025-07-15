@@ -1,0 +1,135 @@
+/*--------------------------------------------------------------
+# Portfolio Page Styles
+--------------------------------------------------------------*/
+
+.portfolio-page {
+  padding: 80px 0;
+}
+
+.section-title h2 {
+  font-family: var(--primary-font);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  text-transform: uppercase;
+}
+
+.section-title h3 {
+  font-family: var(--secondary-font);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.section-title p {
+  color: #6c757d;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+.portfolio-filters {
+  margin-bottom: 40px;
+}
+
+.portfolio-filters .btn {
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 8px 25px;
+  margin: 5px;
+  transition: all 0.3s;
+  border: 2px solid var(--primary-bg-color);
+  background-color: transparent;
+  color: var(--primary-text-color);
+}
+
+.portfolio-filters .btn.active,
+.portfolio-filters .btn:hover {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+}
+
+.portfolio-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-card .card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.portfolio-card .card-body {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.portfolio-card .card-title {
+  font-family: var(--primary-font);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  text-transform: capitalize;
+}
+
+.portfolio-card .card-text {
+  font-family: var(--secondary-font);
+  color: #6c757d;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.portfolio-card .btn-view-project {
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  background-color: var(--primary-text-color);
+  color: var(--contrast-color);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  transition: background-color 0.3s;
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+.portfolio-card .btn-view-project:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .portfolio-page {
+    padding: 40px 0;
+  }
+
+  .section-title h2 {
+    font-size: 2.2rem;
+  }
+
+  .section-title h3 {
+    font-size: 1.5rem;
+  }
+
+  .portfolio-filters {
+    text-align: center;
+  }
+
+  .portfolio-filters .btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}

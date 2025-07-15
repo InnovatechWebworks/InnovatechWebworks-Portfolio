@@ -1,5 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/*--------------------------------------------------------------
+# Globle Styles
+--------------------------------------------------------------*/
+
+/* Tesla-inspired Modern & Elegant Theme */
+
+/* 
+--------------------------------------
+Fonts
+- Primary: 'Orbitron', sans-serif
+- Secondary: 'Rajdhani', sans-serif
+--------------------------------------
+*/
+
+/* 
+--------------------------------------
+Colors
+- Primary Background: Ecru (#e1bb80)
+- Headings & Accents: Bistre (#352208)
+- Contrast/Spacing: White (#ffffff)
+--------------------------------------
+*/
+
+:root {
+  --primary-bg-color: #e1bb80; /* Ecru */
+  --primary-text-color: #352208; /* Bistre */
+  --accent-color: #352208; /* Bistre */
+  --contrast-color: #ffffff;
+  --primary-font: 'Orbitron', sans-serif;
+  --secondary-font: 'Rajdhani', sans-serif;
+}
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--secondary-font);
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--primary-font);
+  color: var(--primary-text-color);
+  font-weight: 700;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #000;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  font-family: var(--primary-font);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #000;
+  border-color: #000;
+}
+
+section {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  bottom: 0;
+  left: calc(50% - 25px);
 }

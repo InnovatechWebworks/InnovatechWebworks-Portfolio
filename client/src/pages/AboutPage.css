@@ -1,0 +1,137 @@
+/*--------------------------------------------------------------
+# About Page Styles
+--------------------------------------------------------------*/
+
+.about-page {
+  padding: 80px 0;
+}
+
+.section-title h2 {
+  font-family: var(--primary-font);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  text-transform: uppercase;
+}
+
+.section-title h3 {
+  font-family: var(--secondary-font);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.section-title p {
+  color: #6c757d;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+.about-story h4 {
+  font-family: var(--primary-font);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.about-story p {
+  color: #444;
+  line-height: 1.6;
+}
+
+.about-story .about-logo {
+  border-radius: 50%;
+  max-width: 350px;
+  margin: 0 auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 0 25px rgba(118, 75, 224, 0.4), 0 0 50px rgba(118, 75, 224, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.about-story .about-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(118, 75, 224, 0.6), 0 0 60px rgba(118, 75, 224, 0.3);
+}
+
+.team-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.team-member-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  height: 100%;
+}
+
+.team-member-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-card .team-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px auto 15px auto;
+  border: 4px solid var(--primary-bg-color);
+}
+
+.team-member-card .card-body {
+  padding: 0 20px 20px 20px;
+}
+
+.team-member-card h5 {
+  font-family: var(--primary-font);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.team-member-card .role {
+  font-family: var(--secondary-font);
+  color: var(--primary-bg-color);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.team-member-card .social-links a {
+  color: #6c757d;
+  margin: 0 8px;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.team-member-card .social-links a:hover {
+  color: var(--primary-text-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 40px 0;
+  }
+
+  .section-title h2 {
+    font-size: 2.2rem;
+  }
+
+  .section-title h3 {
+    font-size: 1.5rem;
+  }
+
+  .about-story h4 {
+    font-size: 1.5rem;
+  }
+
+  .about-story img {
+    margin-bottom: 20px;
+  }
+}

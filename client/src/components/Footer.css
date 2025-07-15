@@ -1,0 +1,82 @@
+/*--------------------------------------------------------------
+# Footer Component Styles
+--------------------------------------------------------------*/
+
+.footer {
+  background-color: var(--primary-text-color); /* Bistre */
+  color: var(--contrast-color);
+  padding: 60px 0;
+  font-size: 0.9rem;
+}
+
+.footer .footer-top {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer .footer-logo img {
+  max-height: 40px;
+  margin-bottom: 15px;
+}
+
+.footer .footer-about p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer h4 {
+  font-family: var(--primary-font);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-bg-color); /* Ecru */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.footer .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-links ul li {
+  padding: 8px 0;
+}
+
+.footer .footer-links ul a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .footer-links ul a:hover {
+  color: var(--primary-bg-color); /* Ecru */
+}
+
+.footer .social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--contrast-color);
+  margin-right: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.footer .social-links a:hover {
+  background-color: var(--primary-bg-color); /* Ecru */
+  color: var(--primary-text-color); /* Bistre */
+}
+
+.footer .social-links a i {
+  font-size: 1.2rem;
+}
+
+.footer .copyright {
+  text-align: center;
+  padding-top: 30px;
+  color: rgba(255, 255, 255, 0.6);
+}

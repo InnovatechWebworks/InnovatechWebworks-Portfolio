@@ -1,0 +1,67 @@
+/*--------------------------------------------------------------
+# Services Section Styles
+--------------------------------------------------------------*/
+
+.services .section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.services .section-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.services .section-title p {
+  font-family: var(--secondary-font);
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 15px auto 0;
+}
+
+.service-card {
+  background-color: var(--contrast-color);
+  border-radius: 15px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(225, 187, 128, 0.2);
+  border-color: var(--primary-bg-color);
+}
+
+.service-card .icon {
+  margin-bottom: 25px;
+}
+
+.service-card .icon i {
+  font-size: 3rem;
+  color: var(--accent-color);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.service-card:hover .icon i {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--primary-text-color);
+}
+
+.service-card h4 {
+  font-family: var(--primary-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  font-family: var(--secondary-font);
+  color: #6c757d;
+  line-height: 1.7;
+}

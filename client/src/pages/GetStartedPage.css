@@ -1,0 +1,111 @@
+/*--------------------------------------------------------------
+# Get Started Page Styles
+--------------------------------------------------------------*/
+
+.get-started-page {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.get-started-page .form-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.get-started-page .section-title h2 {
+  font-family: var(--primary-font);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  margin-bottom: 10px;
+}
+
+.get-started-page .section-title p {
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+.get-started-page .form-label {
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  color: var(--primary-text-color);
+  margin-bottom: .5rem;
+}
+
+.get-started-page .form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 12px 15px;
+  font-family: var(--secondary-font);
+  height: 50px;
+}
+
+.get-started-page .form-control:focus {
+  border-color: var(--primary-bg-color);
+  box-shadow: 0 0 0 0.25rem rgba(225, 187, 128, 0.25);
+}
+
+.get-started-page textarea.form-control {
+  height: auto;
+}
+
+.get-started-page .btn-submit {
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  background-color: var(--primary-text-color);
+  color: var(--contrast-color);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 40px;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+
+.get-started-page .btn-submit:hover {
+  background-color: #000;
+}
+
+.get-started-page .btn-submit:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.get-started-page .contact-info-alt {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid #e9ecef;
+}
+
+.get-started-page .contact-info-alt h4 {
+  font-family: var(--primary-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.get-started-page .contact-info-alt p {
+  font-family: var(--secondary-font);
+  color: #6c757d;
+  line-height: 1.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .get-started-page {
+    padding: 40px 0;
+  }
+
+  .get-started-page .form-container {
+    padding: 20px;
+  }
+
+  .get-started-page .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .get-started-page .contact-info-alt h4 {
+    font-size: 1.3rem;
+  }
+}

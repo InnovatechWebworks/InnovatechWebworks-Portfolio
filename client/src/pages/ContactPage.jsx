@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
-import { Fade } from 'react-awesome-reveal';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import './ContactPage.css';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,13 @@ const ContactPage = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,96 +46,60 @@ const ContactPage = () => {
   };
 
   return (
-    <Container className="py-5">
-      <Fade triggerOnce>
-        <div className="text-center mb-5">
-          <h2 className="text-primary text-uppercase fw-bold">Contact Us</h2>
-          <h3 className="display-6 fw-bold">Get in Touch</h3>
-          <p className="lead text-muted">
-            We'd love to hear from you. Fill out the form below or reach us directly through our contact info.
-          </p>
+    <div className="contact-page">
+      <div className="container">
+        <div className="section-title text-center" data-aos="fade-up">
+          <h2>Contact Us</h2>
+          <h3>Get in Touch</h3>
+          <p>We'd love to hear from you. Fill out the form below or reach us directly through our contact info.</p>
         </div>
-      </Fade>
 
-      <Row>
-        <Col md={6} className="mb-4 mb-md-0">
-          <Fade triggerOnce direction="left">
-            <h4>Send Us a Message</h4>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formName">
-                <Form.Label>Your Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  required
-                />
-              </Form.Group>
+        <div className="row">
+          <div className="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+            <div className="contact-form">
+              <h4>Send Us a Message</h4>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <input type="text" name="name" className="form-control" placeholder="Your Name" value={formData.name} onChange={handleChange} required />
+                </div>
+                <div className="mb-3">
+                  <input type="email" className="form-control" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div className="mb-3">
+                  <input type="text" className="form-control" name="subject" placeholder="Subject" value={formData.subject} onChange={handleChange} />
+                </div>
+                <div className="mb-3">
+                  <textarea className="form-control" name="message" rows="5" placeholder="Message" value={formData.message} onChange={handleChange} required></textarea>
+                </div>
+                <div className="text-center">
+                  <button type="submit" className="btn btn-submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
 
-              <Form.Group className="mb-3" controlId="formEmail">
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formSubject">
-                <Form.Label>Subject</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Subject (optional)"
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formMessage">
-                <Form.Label>Message</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  placeholder="Write your message"
-                  required
-                />
-              </Form.Group>
-
-              <Button variant="primary" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
-            </Form>
-          </Fade>
-        </Col>
-
-        <Col md={6}>
-          <Fade triggerOnce direction="right">
-            <h4>Contact Information</h4>
-            <p className="text-muted d-flex align-items-center">
-              <FaMapMarkerAlt className="me-3 text-primary" size={20} />
-              Kolkata, India, 700156
-            </p>
-            <p className="text-muted d-flex align-items-center">
-              <FaPhone className="me-3 text-primary" size={20} />
-              +91 91239 41790
-            </p>
-            <p className="text-muted d-flex align-items-center">
-              <FaEnvelope className="me-3 text-primary" size={20} />
-              innovatechwebworks@gmail.com
-            </p>
-          </Fade>
-        </Col>
-      </Row>
-    </Container>
+          <div className="col-lg-6" data-aos="fade-left">
+            <div className="contact-info">
+              <h4>Contact Information</h4>
+              <div className="info-item">
+                <i className="bi bi-geo-alt"></i>
+                <p>Kolkata, India, 700156</p>
+              </div>
+              <div className="info-item">
+                <i className="bi bi-phone"></i>
+                <p>+91 91239 41790</p>
+              </div>
+              <div className="info-item">
+                <i className="bi bi-envelope"></i>
+                <p>innovatechwebworks@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

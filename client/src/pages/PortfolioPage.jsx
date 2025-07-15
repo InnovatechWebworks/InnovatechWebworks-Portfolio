@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { Fade } from 'react-awesome-reveal';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import './PortfolioPage.css';
 
 const staticProjects = [
   {
@@ -57,16 +58,18 @@ const PortfolioPage = () => {
   const [filteredItems, setFilteredItems] = useState(staticProjects);
   const [categories, setCategories] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
     const uniqueCategories = ['All', ...new Set(staticProjects.map(item => item.category))];
     setCategories(uniqueCategories);
   }, []);
 
   const handleFilter = (category) => {
     setActiveFilter(category);
-    setShowAll(false); // Reset to show initial view on filter change
     if (category === 'All') {
       setFilteredItems(staticProjects);
     } else {
@@ -74,81 +77,58 @@ const PortfolioPage = () => {
     }
   };
 
-  const itemsToShow = showAll ? filteredItems : filteredItems.slice(0, 3);
-
   return (
-    <Container className="py-5">
-      <div className="text-center mb-5">
-        <h2 className="text-primary text-uppercase fw-bold">Our Portfolio</h2>
-        <h3 className="display-6 fw-bold">Explore Our Recent Work</h3>
-        <p className="lead text-muted">
-          Here are some of the projects we're proud to have worked on.
-        </p>
-      </div>
-
-      <>
-        <div className="d-flex justify-content-center flex-wrap gap-3 mb-5">
-          {categories.map(category => (
-            <Button
-              key={category}
-              variant={activeFilter === category ? 'primary' : 'outline-primary'}
-              onClick={() => handleFilter(category)}
-              className="rounded-pill px-4 text-capitalize"
-            >
-              {category}
-            </Button>
-          ))}
+    <div className="portfolio-page">
+      <div className="container">
+        <div className="section-title text-center" data-aos="fade-up">
+          <h2>Our Portfolio</h2>
+          <h3>Explore Our Recent Work</h3>
+          <p>Here are some of the projects we're proud to have worked on.</p>
         </div>
 
-        <Row xs={1} md={2} lg={3} className="g-4">
-          {itemsToShow.length > 0 ? (
-            itemsToShow.map((item, index) => (
-              <Col key={item._id || index}>
-                <Fade triggerOnce delay={index * 100}>
-                  <Card className="h-100 shadow-sm border-0">
-                    <Card.Img
-                      variant="top"
-                      src={item.imageUrl}
-                      alt={item.title}
-                      style={{ objectFit: 'cover', height: '200px' }}
-                    />
-                    <Card.Body className="p-4 d-flex flex-column">
-                      <Card.Title as="h4" className="fw-bold mb-3">{item.title}</Card.Title>
-                      <Card.Text className="text-muted flex-grow-1">{item.description}</Card.Text>
-                      <Button
-                        variant="primary"
-                        href={item.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Project
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Fade>
-              </Col>
+        <div className="row">
+          <div className="col-12 d-flex justify-content-center">
+            <div className="portfolio-filters">
+              {categories.map(category => (
+                <button
+                  key={category}
+                  className={`btn ${activeFilter === category ? 'active' : ''}`}
+                  onClick={() => handleFilter(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="row g-4">
+          {filteredItems.length > 0 ? (
+            filteredItems.map((item, index) => (
+              <div className="col-lg-4 col-md-6" key={item._id || index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="card portfolio-card">
+                  <img src={item.imageUrl} className="card-img-top" alt={item.title} />
+                  <div className="card-body">
+                    <h5 className="card-title">{item.title}</h5>
+                    <p className="card-text">{item.description}</p>
+                    <a href={item.projectUrl} className="btn btn-view-project" target="_blank" rel="noopener noreferrer">
+                      View Project
+                    </a>
+                  </div>
+                </div>
+              </div>
             ))
           ) : (
-            <Col xs={12}>
+            <div className="col-12">
               <div className="text-center p-5">
-                <h4 className="text-muted">No Projects Found</h4>
-                <p className="text-muted">
-                  There are no projects matching the current filter.
-                </p>
+                <h4>No Projects Found</h4>
+                <p>There are no projects matching the current filter.</p>
               </div>
-            </Col>
+            </div>
           )}
-        </Row>
-
-        {!showAll && filteredItems.length > 3 && (
-          <div className="text-center mt-5">
-            <Button variant="primary" size="lg" onClick={() => setShowAll(true)}>
-              Show All Projects
-            </Button>
-          </div>
-        )}
-      </>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 
