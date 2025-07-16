@@ -41,6 +41,7 @@
   border: 2px solid var(--primary-bg-color);
   background-color: transparent;
   color: var(--primary-text-color);
+  cursor: pointer;
 }
 
 .portfolio-filters .btn.active,
@@ -68,6 +69,7 @@
 .portfolio-card .card-img-top {
   height: 220px;
   object-fit: cover;
+  width: 100%;
 }
 
 .portfolio-card .card-body {
@@ -92,21 +94,36 @@
   margin-bottom: 20px;
 }
 
-.portfolio-card .btn-view-project {
+.portfolio-card .btn-view-project,
+.portfolio-card .btn-demo-project {
   font-family: var(--secondary-font);
   font-weight: 600;
-  background-color: var(--primary-text-color);
-  color: var(--contrast-color);
   border: none;
   border-radius: 50px;
-  padding: 10px 25px;
-  transition: background-color 0.3s;
-  align-self: flex-start;
+  padding: 10px 22px;
   text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.portfolio-card .btn-view-project {
+  background-color: var(--primary-text-color);
+  color: var(--contrast-color);
+  margin-right: 10px;
 }
 
 .portfolio-card .btn-view-project:hover {
   background-color: #000;
+  color: #fff;
+}
+
+.portfolio-card .btn-demo-project {
+  background-color: #B22222;
+  color: #fff;
+}
+
+.portfolio-card .btn-demo-project:hover {
+  background-color: #8B1A1A;
   color: #fff;
 }
 
@@ -131,5 +148,17 @@
   .portfolio-filters .btn {
     padding: 8px 20px;
     font-size: 0.9rem;
+  }
+
+  .portfolio-card .btn-view-project,
+  .portfolio-card .btn-demo-project {
+    width: 48%;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+
+  .portfolio-card .card-body {
+    padding: 20px;
   }
 }
