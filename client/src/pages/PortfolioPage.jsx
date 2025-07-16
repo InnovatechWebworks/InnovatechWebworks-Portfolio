@@ -5,52 +5,31 @@ import './PortfolioPage.css';
 
 const staticProjects = [
   {
-    _id: '1',
-    title: "weather-app",
-    description: "A basic weather app",
-    category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/weather-app",
-    imageUrl: "/images/weather-app.png",
-  },
-  {
     _id: '2',
     title: "shopmenia",
     description: "A full stack e-commerce website with admin panel",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/shopmenia",
-    imageUrl: "/images/shopmenia.png",
+    projectUrl: "https://github.com/RAMANP-007/shopmenia",
+    liveDemoUrl: "https://shopmenia.vercel.app/",
+    imageUrl: "/Images/Screenshot%202025-07-16%20171845.png", // 🖼️ Corrected image URL with encoded space
   },
   {
     _id: '3',
     title: "pizza-delivery-app",
     description: "A full stack pizza delivery application",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/pizza-delivery-app",
+    projectUrl: "https://github.com/RAMANP-007/pizza-delivery-app",
+    liveDemoUrl: "https://pizza-delivery-demo.vercel.app/", // 🔁 Replace if needed
     imageUrl: "/images/pizza-delivery-app.png",
-  },
-  {
-    _id: '4',
-    title: "bhagwat_geeta_verse_explainer",
-    description: "A Bhagwat Geeta verse explainer using Bhagwat Geeta API",
-    category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/bhagwat_geeta_verse_explainer",
-    imageUrl: "/images/bhagwat_geeta_verse_explainer.png",
-  },
-  {
-    _id: '5',
-    title: "event-sheduler",
-    description: "A smart event scheduler that integrates with weather and helps you to schedule your plans",
-    category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/event-sheduler",
-    imageUrl: "/images/event-sheduler.png",
   },
   {
     _id: '6',
     title: "eve-cafe",
     description: "A basic website for a cafe with email messaging feature",
     category: "JavaScript",
-    projectUrl: "https://github.com/InnovatechWebworks/eve-cafe",
-    imageUrl: "/images/eve-cafe.png",
+    projectUrl: "https://github.com/RAMANP-007/eve-cafe",
+    liveDemoUrl: "https://eve-cafe.vercel.app/",
+    imageUrl: "/Images/eve-cafe.png",
   }
 ];
 
@@ -60,10 +39,7 @@ const PortfolioPage = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    AOS.init({ duration: 1000, once: true });
     const uniqueCategories = ['All', ...new Set(staticProjects.map(item => item.category))];
     setCategories(uniqueCategories);
   }, []);
@@ -111,9 +87,14 @@ const PortfolioPage = () => {
                   <div className="card-body">
                     <h5 className="card-title">{item.title}</h5>
                     <p className="card-text">{item.description}</p>
-                    <a href={item.projectUrl} className="btn btn-view-project" target="_blank" rel="noopener noreferrer">
-                      View Project
-                    </a>
+                    <div className="d-flex justify-content-between">
+                      <a href={item.projectUrl} className="btn btn-view-project" target="_blank" rel="noopener noreferrer">
+                        View Code
+                      </a>
+                      <a href={item.liveDemoUrl} className="btn btn-demo-project" target="_blank" rel="noopener noreferrer">
+                        Live Demo
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
