@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import './Footer.css'; // Import the new stylesheet
+import './Footer.css';
 
 const Footer = () => {
   return (
@@ -39,10 +39,9 @@ const Footer = () => {
             <div className="col-lg-3 col-md-6 footer-social">
               <h4>Follow Us</h4>
               <div className="social-links">
-                <a href="https://twitter.com/innovatechweb" target="_blank" rel="noopener noreferrer"><i className="bi bi-twitter"></i></a>
-                <a href="https://facebook.com/innovatechwebworks" target="_blank" rel="noopener noreferrer"><i className="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/innovatech_webworks/" target="_blank" rel="noopener noreferrer
-                "><i className="bi bi-instagram"></i></a>
+                <a href="https://x.com/Innovatech86226" target="_blank" rel="noopener noreferrer"><i className="bi bi-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61577719006629" target="_blank" rel="noopener noreferrer"><i className="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/innovatech_webworks/" target="_blank" rel="noopener noreferrer"><i className="bi bi-instagram"></i></a>
                 <a href="https://linkedin.com/company/innovatech-webworks" target="_blank" rel="noopener noreferrer"><i className="bi bi-linkedin"></i></a>
                 <a href="https://github.com/InnovatechWebworks" target="_blank" rel="noopener noreferrer"><i className="bi bi-github"></i></a>
               </div>
