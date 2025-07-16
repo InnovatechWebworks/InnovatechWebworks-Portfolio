@@ -13,15 +13,7 @@ const staticProjects = [
     liveDemoUrl: "https://shopmenia.vercel.app/",
     imageUrl: "/Images/Screenshot%202025-07-16%20171845.png", // 🖼️ Corrected image URL with encoded space
   },
-  {
-    _id: '3',
-    title: "pizza-delivery-app",
-    description: "A full stack pizza delivery application",
-    category: "JavaScript",
-    projectUrl: "https://github.com/RAMANP-007/pizza-delivery-app",
-    liveDemoUrl: "https://pizza-delivery-demo.vercel.app/", // 🔁 Replace if needed
-    imageUrl: "/images/pizza-delivery-app.png",
-  },
+ 
   {
     _id: '6',
     title: "eve-cafe",
